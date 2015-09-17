@@ -1,22 +1,21 @@
 #include <stdio.h>
 
-int main(void) {
-	const char *DELIMITER = NULL;
-	char mem_array[] = {0};
-	char *p = mem_array;
-	char line[1000];
+int main(int argc, char *argv[]) {
+	char mem_array[] = {0}; // memory array
+	char *p = mem_array;    // pointer to memory array
+	char line[10000];       // command string
 
-	puts("Welcome to the C Brainf*** REPL version 0.0.3");
+	printf("Welcome to the C Brainf%s REPL version 0.1.1\n", argv[1] == "-c" ? "***" : "uck");
 
 	void repl(void) {
-		int i;
+		int i; // for iterator
 
 		while (1) {
-			printf("%c", 62);
-			fgets(line, 1000, stdin);
+			printf("%c", 62); // prompt
+			fgets(line, 10000, stdin);       // get command
 
 			for (i = 0; i < sizeof(line); i++) {
-				char t = line[i];
+				char t = line[i]; // current command
 
 				if (t == '>') {
 					p++;
@@ -30,10 +29,12 @@ int main(void) {
 					printf("\n%c", *p);
 				} else if (t == ',') {
 					scanf("%c", &*p);
-				} else if (line[0..3] == "quit") {
-					break;
+				} else if (t == '[') {
+					while (*p) {
+						if (t == ']') break;
+					}
 				}
-			};
+			}
 		}
 	}
 
